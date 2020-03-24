@@ -11,7 +11,7 @@ export const ROUTES: Routes = [
     {path: '', component: HomeComponent}, //Path seria como um identificador de busca google.com/Imagens
     {path: 'restaurantes', component: RestauranteComponent},
     {path: 'diversao', component: DiversaoComponent},
-    {path: 'oferta', component: HomeComponent}, // caso nenhum parametro de id for passado ele retorna para home
+   // {path: 'oferta', component: HomeComponent}, // caso nenhum parametro de id for passado ele retorna para home
     {path: 'oferta/:id', component: OfertaComponent} // os : serve como parametro de pesquisa  
     
 ]
