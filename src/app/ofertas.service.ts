@@ -1,7 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import { Oferta } from './shared/ofertas.model';
 import { Injectable } from '@angular/core';
-
+import { URL_API, URL_API_OFERTAS, URL_API_OFERTA} from './app.api' 
+import { promise } from 'protractor';
 
 //import 'rxjs/add/operator/toPromise'
  
@@ -10,12 +11,13 @@ import { Injectable } from '@angular/core';
 export class OfertasService {
 
     constructor(private http: HttpClient){}
+    //private urlApi = 'http://localhost:3000/ofertas'; //Var para guardar o endereço da API evitando repetição de codigo e que essa variavel seja alterada com metodo private
 
     public ofertas: Oferta[] = [
     ]
     
     public getOfertas(): Promise<Oferta[]> {
-       return this.http.get('http://localhost:3000/ofertas?destaque=true')
+       return this.http.get(`${URL_API_OFERTAS}?destaque=true`)
         .toPromise()
         .then((resposta: any) => resposta)
         // Para rodar a api rest fake precissa startar o servidor do banco de dados
@@ -24,51 +26,29 @@ export class OfertasService {
     }  
 
     public getOfertasPorCategoria (categoria: string) : Promise<Oferta[]>{
-        return this.http.get<Oferta[]>(`http://localhost:3000/ofertas?categoria=${categoria}`)
+        return this.http.get<Oferta[]>(`${URL_API_OFERTAS}?categoria=${categoria}`)
          .toPromise()
          .then((resposta) => resposta)}
         
-        
-         
-       
-    public getOfertaPorId(id: number): Promise<Oferta> {
-        return this.http.get(`http://localhost:3000/ofertas?id=${id}`)
+    public getOfertaPorId(id: Number): Promise<Oferta> {
+        return this.http.get(`${URL_API_OFERTAS}?id=${id}`) 
             .toPromise()
             .then((resposta: any) => {
-                return resposta.json()[0]
+                return resposta[0]
             })
     }
-
-    
-
-
-   
-//      public getOfertas2(): Promise<Oferta[]> {
-//          return new Promise((resolve, reject) => {
-            
-//              //algum tipo de processamento, que ao finalizar, chama a função resolve ou a função reject
-//              //console.log('será que passou por aqui?')
-//              let deu_certo = true
-
-//              if(deu_certo) {
-//              setTimeout(() => resolve( this.ofertas ),1000)
-//          } else{
-//              reject ({codigo_erro: 404, mensagem_erro: 'Servidor não encontrado'})
-//          }
-//      })
-//      .then((ofertas:Oferta[])=>{
-//          console.log("esse é o primeiro then")
-//          return ofertas
-//      })
-//          .then ((ofertas: Oferta[])=>{
-//             return new Promise((resolve2, reject2  )=>{
-
-//                 setTimeout (() =>{resolve2(ofertas)} ,1000)
-//              })
-//         })
-//         .then((ofertas: Oferta[])=>{
-//              console.log("Executado após 3 segundos porque uma promisse estava sendo executada")
-//              return ofertas
-//          })   
-//  }
- }
+    public getComoUsarPorId(id: number): Promise<String>{
+        return this.http.get(`${URL_API}?id=${id}`)
+        .toPromise()
+        .then((resposta: any)=>{
+            return resposta[0].descricao
+        })
+    }
+    public getOndeFicaPorId(id: number): Promise<String>{
+        return this.http.get(`${URL_API_OFERTA}?id=${id}`)
+        .toPromise()
+        .then((resposta: any)=>{
+            return resposta[0].descricao;
+        })
+    }
+}

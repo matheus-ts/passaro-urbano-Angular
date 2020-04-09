@@ -12,6 +12,8 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { RestauranteComponent } from './Components/restaurante/restaurante.component';
 import { DiversaoComponent } from './Components/diversao/diversao.component';
 import { OfertaComponent } from './Components/oferta/oferta.component';
+import { ComoUsarComponent } from './Components/oferta/como-usar/como-usar.component';
+import { OndeFicaComponent } from './Components/oferta/onde-fIca/onde-fica.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { OfertaComponent } from './Components/oferta/oferta.component';
     FooterComponent,
     RestauranteComponent,
     DiversaoComponent,
-    OfertaComponent
+    OfertaComponent,
+    ComoUsarComponent,
+    OndeFicaComponent
   ],
   imports: [
     BrowserModule,

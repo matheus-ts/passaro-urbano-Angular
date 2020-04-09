@@ -4,6 +4,8 @@ import {HomeComponent} from './Components/home/home.component'
 import {RestauranteComponent} from './Components/restaurante/restaurante.component'
 import {DiversaoComponent} from './Components/diversao/diversao.component'
 import { OfertaComponent } from './Components/oferta/oferta.component'
+import { ComoUsarComponent } from './Components/oferta/como-usar/como-usar.component'
+import { OndeFicaComponent } from './Components/oferta/onde-fIca/onde-fica.component'
 
 
 
@@ -12,6 +14,12 @@ export const ROUTES: Routes = [
     {path: 'restaurantes', component: RestauranteComponent},
     {path: 'diversao', component: DiversaoComponent},
    // {path: 'oferta', component: HomeComponent}, // caso nenhum parametro de id for passado ele retorna para home
-    {path: 'oferta/:id', component: OfertaComponent} // os : serve como parametro de pesquisa  
+    {path: 'oferta/:id', component: OfertaComponent, children: [
+        {path: '', component: OndeFicaComponent},
+        {path: 'como-usar', component: ComoUsarComponent},
+        {path: 'onde-fica', component: OndeFicaComponent}
+    ]
+
+} // os : serve como parametro de pesquisa  
     
 ]

@@ -20,8 +20,8 @@ export class HomeComponent implements OnInit {
 
     this.ofertasService.getOfertas()
       .then(( ofertas: Oferta[] ) => {
-        console.log('a função foi recebida depois de 3 segundos')
         this.ofertas = ofertas}
+        //console.log('a função foi recebida depois de 3 segundos')
       )
       
       .catch((paran: any) => {console.log(paran)})
